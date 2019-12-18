@@ -10,6 +10,8 @@ void append(node**, int);
 void add_at_beg(node**, int);
 void add_after(node*, int, int);
 void deleteNode(node **h, int value);
+int count(node *q);
+void display(node *q);
 
 
 int main() {
@@ -17,37 +19,39 @@ int main() {
     head = NULL;
     
     printf("No. of elements in the Linked List = %d\n", count(head));
+    
+    printf("\nAppending 5 items in the linked list");
     append(&head,1);
     append(&head,1);
     append(&head,3);
     append(&head,4);
     append(&head,17);
-
     display(head);
+    printf("\nNo. of elements in the Linked List = %d\n", count(head));
    
+    printf("\nAdding 3 items in the beginning of the linked list");
     add_at_beg(&head,999);
     add_at_beg(&head,888);
     add_at_beg(&head,777);
-    
-    display(head);
-     
-    add_after(head,7,0);
-    add_after(head,2,1);
-    add_after(head,1,99);
-    add_at_beg(&head,777);
-    
     display(head);
     printf("\nNo. of elements in the Linked List = %d\n", count(head));
-    
-    //deleteNode(&head,888);
-    //deleteNode(&head,1);
-    deleteNode(&head, 1);
-    deleteNode(&head, 777);
-    
+
+    printf("\nAdding item after the 7th element");     
+    add_after(head,7,0);
     display(head);
-    printf("No. of elements in the linked list = %d\n", count(head));
-    
-    getch();
+    printf("\nAdding item after the 2nd element");
+    add_after(head,2,1);
+    display(head);
+    printf("\nAdding item after the 1st element");
+    add_after(head,1,99);
+    display(head);
+    printf("\nNo. of elements in the Linked List = %d\n", count(head));
+
+    printf("\nDeleting all nodes with value 1");
+    deleteNode(&head, 1);
+    display(head);
+    printf("\nNo. of elements in the linked list = %d\n", count(head));
+
     return 0;
 }
 
@@ -119,7 +123,7 @@ void deleteNode(node **h, int value) {
 
 
 // for displaying the linked list
-display(node *q) {
+void display(node *q) {
     printf("\n");
     while(q != NULL) {
         printf("%d => ", q->data);
@@ -130,7 +134,7 @@ display(node *q) {
 
 
 // counts the no. of nodes in the list
-count(node *q) {
+int count(node *q) {
     int c = 0;
     while(q != NULL) {
         q = q->next;
